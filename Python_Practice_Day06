@@ -1,0 +1,412 @@
+
+
+"""
+#create list
+list =["apple","Banana","orange"]
+print(list)
+# access element
+print("print first element",list[0])
+print("print middle Element",len(list)//2)
+# update list
+list[1]="kiwi"
+print("updated list:",list)
+#add element
+list.append("grapes")
+list.insert(0,"mangoes")
+print("after added:",list)
+
+#remove list
+list.pop() # last element will be remov
+print("after removing",list)
+list.remove("orange")
+
+
+#_____________________________________
+
+#stack implemention
+class Stack:
+    def __init__(self):
+        self.items=[]
+        #list of elements
+    def isEmpty(self):
+       return len(self.items)==0
+    def push(self,item):
+        self.items.append(item)
+        print("pushed item:",item)
+    def pop(self):
+        if self.isEmpty():
+            print("stack underflow")
+            return None          
+        return self.items.pop()
+    def peek(self):
+         if self.isEmpty():
+            print("Empty Stack")
+            return None  
+         return self.items[-1]
+    def size(self):
+        return len(self.items)
+    def print(self):
+        print("items  :",self.items) 
+
+stack = Stack()
+stack.push(10)
+stack.push(20)
+stack.push(30)
+stack.print()          
+print("Top element:", stack.peek())   
+print("Popped:", stack.pop())       
+stack.print()                      #
+print("Is stack empty?", stack.isEmpty())  # False
+print("Stack size:", stack.size())          
+                
+#_____________________________
+
+# Queue Implementaion
+
+
+class Queue:
+    def __init__(self):
+        self.items = []  
+    def isEmpty(self):
+        return len(self.items) == 0
+    def enqueue(self, item):
+        self.items.append(item)
+        print("Items:",item)
+
+    def dequeue(self):
+        if self.isEmpty():
+            print("Queue Underflow")
+            return None
+        return self.items.pop(0)
+
+    def peek(self):
+        if self.isEmpty():
+            print("Queue is empty")
+            return None
+        return self.items[0]
+
+    def size(self):
+        return len(self.items)
+
+  
+    def print(self):
+        print("Queue ", self.items)
+
+q = Queue()
+q.enqueue(10)
+q.enqueue(20)
+q.enqueue(30)
+
+q.print()               
+print("Front element:", q.peek()) 
+print("Dequeued:", q.dequeue())   
+q.print()                        
+print("Is queue empty?", q.isEmpty()) 
+print("Queue size:", q.size())          
+
+#_____________________________________________
+
+
+#                                split()
+# split() only use for string
+# split return a list of words
+text="Python is difficult"
+word=text.split(" ")
+print("text after splitting",word)
+
+fruit="apple,banana,orange"
+f=fruit.split(",")
+print("splitting with comma",f)
+sentence=" My name is Wajeeha Yaseen"
+word=sentence.split()
+print("last word",word[3])
+
+# using maxsplit
+myList="one two three four"
+l=myList.split(" ",2) # only 2 split occure
+print("maxsplit",l)
+
+#__________________________________________
+# strip()
+# strip() function work only for string and also return a string
+text="%%%%Wajeeha Yaseen****"
+t=text.strip("%")
+print("after strip",t)
+
+text2="%%%%Wajeeha Yaseen****"
+t2=text2.strip("*")
+print("after strip",t2)
+
+fruit=",,,,,apple,banana, orange,,,,,,,"
+f=fruit.strip(",,,,,")
+print("after stripping",f)
+print("last word:",f[-1])
+
+
+#----------------------------------------------
+#RegEx
+import re
+
+text="My Name is Wajeeha Yaseen"
+t=re.findall("\AMy",text)
+print(t)
+if t:
+    print("Match")
+else:
+ print("Not found")   
+
+#RegEx using some special Character
+#find digits:
+d="Wajeeha Yaseen 283 **Lahore 283"
+print(" Digits :",re.findall(r'\d',d))
+# non digits
+print(" Non digits :",re.findall(r'\D',d))
+# word character
+print(" word character :",re.findall(r'\w',d))
+# non word character
+print(" Non word character :",re.findall(r'\W',d))
+# whitespace
+print("whiteSpace character :",re.findall(r'\s',d))
+# nonwhitespace
+print(" Non WhiteSpace :",re.findall(r'\S',d))
+text1 = "Hello World"
+print(re.findall(r'\Bell\B', text1)) 
+
+
+#------------------------------------
+# keyword arguments vs keyword only arguments
+def student_detail(name,rollno):
+    print("Name:",name,"Age:",rollno)
+
+
+ 
+student_detail("Wajeeha Yaseen","BSEF21M042")   #postional arguments
+
+# keyword only Arguments:
+def student_detail(name,*,rollno):
+    print("Name:",name,"Age:",rollno)
+
+
+  # learningg points:
+  #keyword arguments(pass by name : option hota hai )
+ # not necessary to put * in function definition
+ # if we student_detail(name,rollno): & pass arguments by name, it will also work
+ #student_detail("Wajeeha Yaseen",rollno="BSEF21M042")  withhout name also will run this 
+ # this is the main difference both keywrd only or not
+
+
+
+  # learningg points:
+  #keyword only arguments(mandatory hai)
+  #student_detail(name,*,rollno) necessary syntax
+
+ # here we pass arguments by name not by position
+ # after putting steric ,all parameters are considered keyword arguments
+student_detail("Wajeeha Yaseen",rollno="BSEF21M042") 
+
+# example of variable no of arguements
+def order(*items,time):
+    print("items :",items,"Time :",time)
+
+
+# here in this example ,time become a keyword argumet,and item is a postional argument
+order(["Orange","banana","Grapes"],time="5AM") 
+
+#_________________________________
+# postional vs postional only keyword
+
+
+# positional arguments are normal function
+# same order pass or set value in argument or goes to in parameters
+#we pass arguments by name also
+
+# example
+
+def student(name,age):
+    print("Name:",name,"Age:",age)
+
+ #it will allso work or  run
+student("Wajeeha Yaseen",24)   
+#  we can also pass by name
+student("Maria Yasin",age=23) 
+
+# postional only keyword
+# in whihc we cannot pass arguments by name
+# using / , befor this / all parameters are considered postional only keyword
+def student(name,age,/):
+    print("Name:",name,"Age:",age)
+
+ # name, age here are position only keyword,
+student("Saqlain",26)    
+
+
+#-----------------------------------------
+
+# arbitray arguments
+
+# if single steric * use in function parameter 
+# will be postionall arbitray ,accept the variable no.of arguments
+
+def add(*args):
+    total=0
+    for i in args:
+        total+=i
+    return total    
+
+print("positional arbitrary argument",add(2,3))
+print("positional arbitrary argument",add(2,3,5))
+
+
+
+#__________________________
+#arbitray keyword arguments
+
+# here **args indicate the arbitray keyword arguments
+# pass by name
+# in loop ,items() is a dictionary built in function
+def add(**args):
+    for key,value in args.items():
+        print(f"{key}: {value}")
+
+add(Name="Wajeeha Yaseen",Age=21 ,Country="Lahore")
+
+
+#----------------------#
+#Exceptional Hnadling
+
+# try,except,else,finall(always run wether error or not)
+
+#exmple 01
+
+
+try:
+    with open("demo.txt",'r') as file:
+        print(file.read())
+except FileNotFoundError:
+    print("File Not found")
+else:
+    print("File found")
+finally:
+     print("Program Ended")   
+
+     
+
+
+#example02
+try:
+    x=int(input("Enter Number:"))
+    print("Division:",10/x)
+except ValueError:
+    print("Invalid Number")
+except ZeroDivisionError:
+    print("Cannot divide by Zero")
+else:
+    print("Successful ")
+
+finally:
+    print("Program ended")   
+
+
+# raise keyword
+age=int(input("Enter Your age:"))
+if age<18:
+    raise ValueError("Age must be 18 or above")
+    #raise.Exception("xyz")
+print("Eligible")
+
+
+#-----------------------
+ 
+# list slicing
+myList=[20,23,89,90,12]
+#[start:end]
+print("List slicing",myList[2:4]) #89,90, go to end-1 index 
+numbers = [10, 20, 30, 40, 50]
+
+# it will go to end-1 mean 2index 
+print(numbers[:3])
+print("Till end :",numbers[2:])
+
+
+
+#---------------------------
+# negative Slicing
+numbers = [10, 20, 30, 40, 50]
+print("Original list:",numbers)
+print(numbers[-4:-1])
+# it will also go to end-1 index 
+# 50 mean -1 index out put will be 20,30,40,50
+
+numbers = [1, 2, 3, 4, 5]
+print(numbers[::-1])
+
+a =["Abc","def"]
+b= a[:]
+b.append(2)
+print("Copy List:",b)
+numbers1 = [1, 2, 3, 4, 5]
+
+numbers1[1:4] = [20, 30, 40]
+print(numbers1)
+# delete function
+numbers2 = [1, 2, 3, 4, 5, 6]
+
+# del keyword we will also use at index level or slice 
+del numbers2[2:5]
+print(numbers2)
+
+l=[2,3,4]
+l2=[5,6,7]
+l.extend(l2)
+print("After extended list:",l)
+# l.clear(),delete all element or give empty string
+
+
+
+
+#-------------------------------------------
+#packing or unpacking
+
+# python automatic pack values into tuple
+def add_numbers(*nums):
+    print(nums)
+
+add_numbers(1, 2, 3, 4)
+
+#unpacking , is extracting values,stored in variables
+
+data=(10,20,30)
+a,b,c=data
+print("unpacking value",a)
+print("unpacking value",b)
+print("unpacking value",c)
+
+# unpacking list:
+numbers = [1, 2, 3]
+
+x, y, z = numbers
+print(x, y, z)
+# if we donot wnt to store values, use'-'
+n1 = [1, 2, 3]
+
+x, _, z = n1
+print("original list:",n1)
+print("Ignoring middle value",x,z)
+
+"""
+#-----------------------------------------
+# packing or unpacking in functions
+
+#packing
+def show_info(**info):
+    print(info)
+
+show_info(name="Wajeeha", age=23, city="Lahore")
+
+# unpacking
+def add(a,b,c):
+    print("unpakcing:",a,b,c)
+
+num=[2,3,4]
+# here ,it is necessary to put *, otherwise, it will give error
+add(*num)
