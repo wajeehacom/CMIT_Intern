@@ -209,6 +209,7 @@ print("Lowest Element :",minVal)
 
 import array as arr
 my_arr=arr.array('i',[1,2,3])
-# if we will use or write simply,i in my_arr, so arry will be go to out of range
+#array overflow
 for i in range(len(my_arr)): 
+
  print("Element at Index",i,":",my_arr[i])
